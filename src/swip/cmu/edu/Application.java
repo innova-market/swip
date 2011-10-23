@@ -21,11 +21,11 @@ public class Application
 		boolean granted;
 		String reason;
 		
-		public Request(Permission permission, boolean granted, String reason)
+		public Request(Permission permission, String reason)
 		{
 			super();
 			this.permission = permission;
-			this.granted = granted;
+			this.granted = false;
 			this.reason = reason;
 		}
 
@@ -60,16 +60,14 @@ public class Application
 		{
 			return reason;
 		}
-		
-		
 	}
 	
 	private String name;
-	private String icon;
+	private int icon;
 	private String description;
 	private List<Request> requests;
 	
-	public Application(String name, String icon, String description)
+	public Application(String name, int icon, String description)
 	{
 		super();
 		this.name = name;
@@ -90,13 +88,15 @@ public class Application
 	{
 		return name;
 	}
+	
 	/**
 	 * @return the icon
 	 */
-	public String getIcon()
+	public int getIcon()
 	{
 		return icon;
 	}
+	
 	/**
 	 * @return the description
 	 */
@@ -104,6 +104,7 @@ public class Application
 	{
 		return description;
 	}
+	
 	/**
 	 * @return the permissions
 	 */
@@ -112,6 +113,4 @@ public class Application
 		return requests;
 	}
 	
-	
-
 }

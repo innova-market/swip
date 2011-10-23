@@ -8,12 +8,19 @@ import swip.cmu.edu.Application.Request;
 
 public class PermissionManager
 {
-	static HashMap<String, Permission> permissionsById = new HashMap<String, Permission>();
-	static List<Application> apps = new ArrayList<Application>();
-	static List<Category> categories = new ArrayList<Category>();
+	private static boolean initialized = false;
+	public static HashMap<String, Permission> permissionsById = new HashMap<String, Permission>();
+	public static List<Application> installedApps = new ArrayList<Application>();
+	public static List<Application> uninsalledApps = new ArrayList<Application>();
+	public static List<Category> categories = new ArrayList<Category>();
 	
-	static void InitializeDB()
+	public static void initialize()
 	{
+		// Don't initialize more than once. (just in case)
+		if(initialized)
+			return;
+		initialized = true;
+		
 		// Create all the permissions.
 		loadPermissions();
 		loadCategories();
@@ -22,7 +29,7 @@ public class PermissionManager
 	
 	private static void loadPermissions()
 	{
-		permissionsById.put("TEST", new Permission("TEST", "Dar permiso", "Este es un permiso muy importante.", false, true));
+		permissionsById.put("TEST", new Permission("TEST", "Give permission", "Very relevant permission.", false, true));
 	}
 	
 	private static void loadCategories()
@@ -66,7 +73,19 @@ public class PermissionManager
 	
 	private static void loadApps()
 	{
-		Application app = new Application("Angry Birds", "angrybirds2.png", "Some birds really, really angry.");
-		app.addRequest(new Request(permissionsById.get("TEST"), false, "We need this permission to screw you..."));
+		Application app = new Application("Angry Birds", R.drawable.angrybirds2, "Some birds really, really angry.");
+		app.addRequest(new Request(permissionsById.get("TEST"), "We need this permission to screw you..."));
+		uninsalledApps.add(app);
+		
+		app = new Application("Bla", R.drawable.info80, "Yeah, very interesting...");
+		app.addRequest(new Request(permissionsById.get("TEST"), "We need this permission to screw you..."));
+		uninsalledApps.add(app);
+		
+		for(int i=1; i<=10; i++)
+		{
+			app = new Application("App" + i, R.drawable.warn80, "Nop, nothing to say about this one, but HEY! its FREE!");
+			app.addRequest(new Request(permissionsById.get("TEST"), "We need this permission to screw you..."));
+			uninsalledApps.add(app);
+		}
 	}
 }

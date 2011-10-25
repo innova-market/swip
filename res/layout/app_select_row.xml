@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="wrap_content" 
 	android:layout_height="50sp">
-
 	<ImageView
+	    android:id="@+id/risk"
+	    android:layout_width="30sp"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="4sp"
+	    android:layout_marginRight="4sp"
+	    android:layout_marginTop="4sp" />
+    <ImageView
 	    android:id="@+id/icon"
 	    android:layout_width="30sp"
 	    android:layout_height="wrap_content"
 	    android:layout_marginLeft="4sp"
 	    android:layout_marginRight="4sp"
-	    android:layout_marginTop="4sp" >
-
-	</ImageView>
-	<TextView 
+	    android:layout_marginTop="4sp" />
+	
+    	<TextView 
 	    android:layout_gravity="center_vertical"
 	    android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
@@ -20,4 +25,6 @@
 		android:id="@+id/label"
 		android:textSize="20sp">
 	</TextView>
-</LinearLayout>
+
+
+</TableRow>

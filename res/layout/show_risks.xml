@@ -12,13 +12,13 @@
             android:background="#202020" >
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/appImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/angrybirds2" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/appName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -33,7 +33,7 @@
             android:background="#FF909090" />
 
         <TableRow
-            android:id="@+id/tableRow4"
+            android:id="@+id/privacyRisk"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -62,14 +62,14 @@
                     android:id="@+id/textView3"
                     android:layout_width="256dp"
                     android:layout_height="wrap_content"
-                    android:text="This app is being granted access to use use 6 phone features that may contain sensitive information."
+                    android:text="This app is being granted access to use phone features that may contain sensitive information."
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
             </LinearLayout>
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow4"
+            android:id="@+id/featureLoss"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_marginBottom="75dp"
@@ -99,7 +99,7 @@
                     android:id="@+id/textView3"
                     android:layout_width="256dp"
                     android:layout_height="wrap_content"
-                    android:text="This app is asking access to 6 phone features currently denied. Parts of the application may not completely work or some features may be disabled."
+                    android:text="This app is asking access to phone features currently denied. Parts of the application may not completely work or some features may be disabled."
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
             </LinearLayout> 
@@ -113,14 +113,14 @@
             android:layout_gravity="bottom" >
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/modify"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Modify" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/accept"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

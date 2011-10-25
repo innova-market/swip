@@ -66,6 +66,34 @@ public class Application
 	private int icon;
 	private String description;
 	private List<Request> requests;
+
+	public void revertToDefaults()
+	{
+		for(Request r: requests)
+		{
+			r.granted = r.permission.acceptByDefault();
+		}
+	}
+	
+	public boolean isRiskingPrivacy()
+	{
+		for(Request r: requests)
+		{
+			if(r.granted && r.permission.isRisky())
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean isLoosingFeatures()
+	{
+		for(Request r: requests)
+		{
+			if(!r.granted)
+				return true;
+		}
+		return false;
+	}
 	
 	public Application(String name, int icon, String description)
 	{

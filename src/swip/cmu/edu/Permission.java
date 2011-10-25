@@ -12,12 +12,20 @@ public class Permission
 	private boolean acceptByDefault;
 	private boolean risky;
 	
-	public Permission(String key, String name, String description, boolean acceptByDefault, boolean risky)
+	/**
+	 * @return the risky
+	 */
+	public boolean isRisky()
+	{
+		return risky;
+	}
+
+	public Permission(String key, String name, String description, boolean risky)
 	{
 		super();
 		this.name = name;
 		this.description = description;
-		this.acceptByDefault = acceptByDefault;
+		this.acceptByDefault = !risky;
 		this.key = key;
 		this.risky = risky;
 	}

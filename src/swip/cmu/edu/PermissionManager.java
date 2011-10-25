@@ -13,6 +13,18 @@ public class PermissionManager
 	public static List<Application> installedApps = new ArrayList<Application>();
 	public static List<Application> uninsalledApps = new ArrayList<Application>();
 	public static List<Category> categories = new ArrayList<Category>();
+//	public static Application selectedApp = null;
+//	public static Permission selectedPermission = null;
+	
+	public static boolean install(Application toInstall)
+	{
+		int index = uninsalledApps.indexOf(toInstall);
+		if(index < 0)
+			return false;
+		uninsalledApps.remove(index);
+		installedApps.add(toInstall);
+		return true;
+	}
 	
 	public static void initialize()
 	{
@@ -29,7 +41,9 @@ public class PermissionManager
 	
 	private static void loadPermissions()
 	{
-		permissionsById.put("TEST", new Permission("TEST", "Give permission", "Very relevant permission.", false, true));
+		permissionsById.put("TEST", new Permission("TEST", "Give permission", "Very relevant permission.", true));
+		permissionsById.put("RISKY", new Permission("RISKY", "very risky", "Very relevant permission.", true));
+		permissionsById.put("NOT_RISKY", new Permission("NOT_RISKY", "not risky", "Very relevant permission.", false));
 	}
 	
 	private static void loadCategories()
@@ -37,6 +51,9 @@ public class PermissionManager
 		{
 			Category c = new Category("Development tools");
 			c.addPermission(permissionsById.get("TEST"));
+			c.addPermission(permissionsById.get("RISKY"));
+			c.addPermission(permissionsById.get("NOT_RISKY"));
+			categories.add(c);
 		}
 		
 		{
@@ -75,6 +92,8 @@ public class PermissionManager
 	{
 		Application app = new Application("Angry Birds", R.drawable.angrybirds2, "Some birds really, really angry.");
 		app.addRequest(new Request(permissionsById.get("TEST"), "We need this permission to screw you..."));
+		app.addRequest(new Request(permissionsById.get("RISKY"), "We need this permission to screw you..."));
+		app.addRequest(new Request(permissionsById.get("NOT_RISKY"), "We need this permission to screw you..."));
 		uninsalledApps.add(app);
 		
 		app = new Application("Bla", R.drawable.info80, "Yeah, very interesting...");
@@ -85,6 +104,8 @@ public class PermissionManager
 		{
 			app = new Application("App" + i, R.drawable.warn80, "Nop, nothing to say about this one, but HEY! its FREE!");
 			app.addRequest(new Request(permissionsById.get("TEST"), "We need this permission to screw you..."));
+			app.addRequest(new Request(permissionsById.get("RISKY"), "We need this permission to screw you..."));
+			app.addRequest(new Request(permissionsById.get("NOT_RISKY"), "We need this permission to screw you..."));
 			uninsalledApps.add(app);
 		}
 	}

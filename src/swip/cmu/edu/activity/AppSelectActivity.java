@@ -21,17 +21,14 @@ public class AppSelectActivity extends ListActivity
 {
 	/** Called when the activity is first created. */
 
-	public void onCreate(Bundle icicle) {
+	public void onCreate(Bundle icicle) 
+	{
 		super.onCreate(icicle);
 		
 		// Initialize the data layer
 		PermissionManager.initialize();
 		
-		// Create an array of Strings, that will be put to our ListActivity
-		//String[] names = new String[] { "Linux", "Windows7", "Eclipse", "Suse","Ubuntu", "Solaris", "Android", "iPhone"};
-		
 		// Use your own layout and point the adapter to the UI elements which contains the label
-		//this.setListAdapter(new ArrayAdapter<String>(this, R.layout.uninstalled_select, R.id.label, names));
 		this.setListAdapter(new AppListAdapter(PermissionManager.uninsalledApps, this));
 	}
 
@@ -41,11 +38,11 @@ public class AppSelectActivity extends ListActivity
 		super.onListItemClick(l, v, position, id);
 		
 		// Get the item that was clicked
-		Application app = (Application) this.getListAdapter().getItem(position);
-		Toast.makeText(this, "You selected: " + app.getName(), Toast.LENGTH_LONG).show();
+//		Application app = (Application) this.getListAdapter().getItem(position);
+//		Toast.makeText(this, "You selected: " + app.getName(), Toast.LENGTH_LONG).show();
 		
 		Intent intent = new Intent(this, ShowRiskActivity.class);
-//		intent.putExtra("appId", app.get)
+		intent.putExtra("appId", position);
 		startActivity(intent);
 		
 	}

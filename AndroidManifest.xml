@@ -25,6 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:label="Verify permissions for this application"
+            android:name=".activity.ModifyPermissionsActivity" >
+        </activity>
     </application>
 
 </manifest>

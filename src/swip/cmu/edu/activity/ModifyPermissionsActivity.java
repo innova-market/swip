@@ -8,11 +8,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.ToggleButton;
+import android.widget.Toast;
 
 public class ModifyPermissionsActivity extends Activity
 {
@@ -21,19 +22,64 @@ public class ModifyPermissionsActivity extends Activity
 		ImageView risk;
 		ImageView loss;
 		TextView text;
-		ToggleButton grant;
-		Request reqest;
+//		ToggleButton grant;
+		CheckBox check;
+		Request request;
 		
-		public PermissionRow(Context context, Request reqest)
+		public PermissionRow(final Context context, Request reqest)
 		{
 			super(context);
-			this.reqest = reqest;
+			this.request = reqest;
 			
 			// Set the images
 			risk = new ImageView(context);
-			risk.setImageResource(R.drawable.warn40);
+			loss = new ImageView(context);
+			risk.setImageResource(R.drawable.warn20);
+			loss.setImageResource(R.drawable.info20);
 			
+			text = new TextView(context);
+			text.setText(request.getPermission().getName());
+			text.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 20));
+			text.setClickable(true);
+			text.setOnClickListener(new OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+					// TODO Launch details for this permission.
+					Toast.makeText(context, PermissionRow.this.request.getReason(), Toast.LENGTH_SHORT).show();
+				}
+			});
+
+//			grant = new ToggleButton(context);
+//			grant.setTextOn("Yes");
+//			grant.setTextOff("No");
+//			grant.setChecked(true);	// TODO link
+			
+			check = new CheckBox(context);
+			check.setOnClickListener(new OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+					boolean granted = ((CheckBox) v).isChecked();
+					PermissionRow.this.request.setGranted(granted);
+					update();
+				}
+			});
+			
+			this.addView(check);
+			this.addView(text);
 			this.addView(risk);
+			this.addView(loss);
+			update();
+		}
+		
+		void update()
+		{
+			risk.setVisibility(request.isRiskingPrivacy() ? VISIBLE : GONE);
+			loss.setVisibility(request.isGranted() ? GONE : VISIBLE);
+			check.setChecked(request.isGranted());
 		}
 	}
 	
@@ -78,21 +124,10 @@ public class ModifyPermissionsActivity extends Activity
 		{
 			// Add risk if present.
 			table.addView(new PermissionRow(this, r));
+			table.addView(new PermissionRow(this, r));
+			table.addView(new PermissionRow(this, r));
+			table.addView(new PermissionRow(this, r));
 		}
-		
-//		TableRow fl = (TableRow) findViewById(R.id.featureLoss);
-//		if(!beingInstalled.isLoosingFeatures())
-//			fl.setVisibility(View.GONE);
-//
-//		TableRow pr = (TableRow) findViewById(R.id.privacyRisk);
-//		if(!beingInstalled.isRiskingPrivacy())
-//			pr.setVisibility(View.GONE);
-//		
-//		// Wait for actions on the buttons.
-//		Button modify = (Button) findViewById(R.id.modify);
-//		modify.setOnClickListener(modifyListener);
-//		Button accept = (Button) findViewById(R.id.accept);
-//		accept.setOnClickListener(acceptListener);
 	}
 	
 	public void setApp(Application app)

@@ -60,6 +60,11 @@ public class Application
 		{
 			return reason;
 		}
+
+		public boolean isRiskingPrivacy()
+		{
+			return granted && permission.isRisky();
+		}
 	}
 	
 	private String name;

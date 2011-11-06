@@ -39,7 +39,17 @@ public class MainMenuActivity extends Activity
 		setContentView(R.layout.main_menu);
 		
 		// Wait for actions on the buttons.
-		Button modify = (Button) findViewById(R.id.install);
+		Button install = (Button) findViewById(R.id.install);
+		install.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				MainMenuActivity.this.startActivity(new Intent(MainMenuActivity.this, AppSelectActivity.class));
+			}
+		});
+		
+		Button modify = (Button) findViewById(R.id.modify);
 		modify.setOnClickListener(new View.OnClickListener()
 		{
 			@Override
@@ -49,30 +59,14 @@ public class MainMenuActivity extends Activity
 			}
 		});
 		
-		// Set the app icon and name
-//		ImageView imageView = (ImageView) findViewById(R.id.appImage);
-//		imageView.setImageResource(beingInstalled.getIcon());
-//		
-//		TextView textView = (TextView) findViewById(R.id.appName);
-//		textView.setText(beingInstalled.getName());
-//		
-//		TableLayout table = (TableLayout) findViewById(R.id.permissionTable);
-//		
-//		// Fill this screen with the information from the permissions, line by line.
-//		for(Request r: beingInstalled.getPermissionRequests())
-//		{
-//			// Add risk if present.
-//			table.addView(new PermissionRow(this, r));
-//		}
-		
-//		TableRow fl = (TableRow) findViewById(R.id.featureLoss);
-//		if(!beingInstalled.isLoosingFeatures())
-//			fl.setVisibility(View.GONE);
-//
-//		TableRow pr = (TableRow) findViewById(R.id.privacyRisk);
-//		if(!beingInstalled.isRiskingPrivacy())
-//			pr.setVisibility(View.GONE);
-//		
-//		
+		Button defaults = (Button) findViewById(R.id.defaults);
+		defaults.setOnClickListener(new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				MainMenuActivity.this.startActivity(new Intent(MainMenuActivity.this, AppSelectActivity.class));
+			}
+		});
 	}
 }

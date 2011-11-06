@@ -1,156 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/tableLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-        <TableRow
-            android:id="@+id/tableRow1"
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#202020"
+        android:baselineAligned="false" >
+
+        <ImageView
+            android:id="@+id/appImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:background="#202020" >
+            android:src="@drawable/angrybirds2" />
 
-            <ImageView
-                android:id="@+id/appImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/angrybirds2" />
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Angry Birds"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <View
+        android:layout_height="1dip"
+        android:layout_marginBottom="75dp"
+        android:background="#FF909090" />
+
+    <TableRow
+        android:id="@+id/privacyRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:baselineAligned="false" >
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/warn40" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/appName"
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Angry Birds"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:text="Privacy Risk..."
+                android:textSize="20sp" />
 
-        </TableRow>
-
-        <View
-            android:layout_height="1dip"
-            android:layout_marginBottom="75dp"
-            android:background="#FF909090" />
-
-        <TableRow
-            android:id="@+id/privacyRisk"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:baselineAligned="false" >
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="256dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/warn40" />
+                android:text="This app is being granted access to use phone features that may contain sensitive information."
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+    </TableRow>
 
-             <LinearLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Privacy Risk..."
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="256dp"
-                    android:layout_height="wrap_content"
-                    android:text="This app is being granted access to use phone features that may contain sensitive information."
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            </LinearLayout>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/featureLoss"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="75dp"
-            android:layout_weight="1"
-            android:baselineAligned="false" >
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/info40" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Possible loss of features..."
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="256dp"
-                    android:layout_height="wrap_content"
-                    android:text="This app is asking access to phone features currently denied. Parts of the application may not completely work or some features may be disabled."
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            </LinearLayout> 
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom" >
-
-            <Button
-                android:id="@+id/modify"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Modify" />
-
-            <Button
-                android:id="@+id/accept"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Accept and install" />
-
-        </TableRow>
-    </TableLayout>
-<!-- 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
+    <TableRow
+        android:id="@+id/featureLoss"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:baselineAligned="false"
-        android:orientation="horizontal" >
+        android:layout_marginBottom="75dp" >
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/info40" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Possible loss of features..."
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:text="This app is asking access to phone features currently denied. Parts of the application may not completely work or some features may be disabled."
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/buttons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/modify"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="Modify" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/accept"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
-    </LinearLayout>
+            android:text="Accept and install" />
+    </TableRow>
 
-</LinearLayout> -->
+</TableLayout>

@@ -100,6 +100,8 @@ public class ModifyPermissionsActivity extends Activity
         	// Call the next screen.
         }
     };
+
+    
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -123,9 +125,6 @@ public class ModifyPermissionsActivity extends Activity
 		for(Request r: beingInstalled.getPermissionRequests())
 		{
 			// Add risk if present.
-			table.addView(new PermissionRow(this, r));
-			table.addView(new PermissionRow(this, r));
-			table.addView(new PermissionRow(this, r));
 			table.addView(new PermissionRow(this, r));
 		}
 	}

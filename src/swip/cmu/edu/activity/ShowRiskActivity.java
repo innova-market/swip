@@ -47,6 +47,7 @@ public class ShowRiskActivity extends Activity
 		
 		beingInstalledIndex = this.getIntent().getIntExtra("appId", 0);
 		beingInstalled = PermissionManager.uninsalledApps.get(beingInstalledIndex);
+		beingInstalled.revertToDefaults();
 		
 		// Set the app icon and name
 		ImageView imageView = (ImageView) findViewById(R.id.appImage);
@@ -59,10 +60,14 @@ public class ShowRiskActivity extends Activity
 		TableRow fl = (TableRow) findViewById(R.id.featureLoss);
 		if(!beingInstalled.isLoosingFeatures())
 			fl.setVisibility(View.GONE);
+		else
+			fl.setVisibility(View.VISIBLE);
 
 		TableRow pr = (TableRow) findViewById(R.id.privacyRisk);
 		if(!beingInstalled.isRiskingPrivacy())
 			pr.setVisibility(View.GONE);
+		else
+			pr.setVisibility(View.VISIBLE);
 		
 		// Wait for actions on the buttons.
 		Button modify = (Button) findViewById(R.id.modify);

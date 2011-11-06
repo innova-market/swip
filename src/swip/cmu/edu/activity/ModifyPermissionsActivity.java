@@ -37,7 +37,6 @@ public class ModifyPermissionsActivity extends Activity
 		}
 	}
 	
-	
 	Application beingInstalled;
 	
 	View.OnClickListener modifyListener = new View.OnClickListener() 
@@ -79,7 +78,6 @@ public class ModifyPermissionsActivity extends Activity
 		{
 			// Add risk if present.
 			table.addView(new PermissionRow(this, r));
-			
 		}
 		
 //		TableRow fl = (TableRow) findViewById(R.id.featureLoss);

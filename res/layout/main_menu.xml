@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    <Button
+        android:id="@+id/install"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Install an application" />
+    <Button
+        android:id="@+id/modify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modify Existing Permissions" />
+     <Button
+        android:id="@+id/defaults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Manage Permission Defaults" />
+</LinearLayout>

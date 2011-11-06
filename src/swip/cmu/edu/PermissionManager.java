@@ -98,17 +98,17 @@ public class PermissionManager
 		app.addRequest(new Request(permissionsById.get("TEST"), "We need this permission to screw you..."));
 		app.addRequest(new Request(permissionsById.get("RISKY"), "We need this permission to screw you..."));
 		app.addRequest(new Request(permissionsById.get("NOT_RISKY"), "We need this permission to screw you..."));
+		
 		uninsalledApps.add(app);
 		
 		app = new Application("Bla", R.drawable.info80, "Yeah, very interesting...");
-		app.addRequest(new Request(permissionsById.get("TEST"), "We need this permission to screw you..."));
+		app.addRequest(new Request(permissionsById.get("RISKY"), "We need this permission to screw you..."));
 		uninsalledApps.add(app);
 		
 		for(int i=1; i<=10; i++)
 		{
 			app = new Application("App" + i, R.drawable.warn80, "Nop, nothing to say about this one, but HEY! its FREE!");
 			app.addRequest(new Request(permissionsById.get("TEST"), "We need this permission to screw you..."));
-			app.addRequest(new Request(permissionsById.get("RISKY"), "We need this permission to screw you..."));
 			app.addRequest(new Request(permissionsById.get("NOT_RISKY"), "We need this permission to screw you..."));
 			uninsalledApps.add(app);
 		}

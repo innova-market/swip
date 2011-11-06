@@ -72,6 +72,6 @@ public class AppListAdapter extends BaseAdapter
 		TextView textView = (TextView) rowView.findViewById(R.id.label);
 		textView.setText(app.getName());
 
-		return rowView;	
+		return rowView;
 	}
 }

@@ -41,7 +41,11 @@ public class PermissionManager
 	
 	private static void loadPermissions()
 	{
-		permissionsById.put("TEST", new Permission("TEST", "Give permission", "Very relevant permission.", true));
+		// Create permisions
+		Permission p = new Permission("TEST", "Risky but accepted by default", "Very relevant permission.", true);
+		p.setAcceptByDefault(true);
+		permissionsById.put("TEST", p);
+		
 		permissionsById.put("RISKY", new Permission("RISKY", "very risky", "Very relevant permission.", true));
 		permissionsById.put("NOT_RISKY", new Permission("NOT_RISKY", "not risky", "Very relevant permission.", false));
 	}

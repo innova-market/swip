@@ -40,8 +40,6 @@ public class ModifyPermissionsActivity extends Activity
 	
 	Application beingInstalled;
 	
-	
-	
 	View.OnClickListener modifyListener = new View.OnClickListener() 
 	{
         public void onClick(View v) 

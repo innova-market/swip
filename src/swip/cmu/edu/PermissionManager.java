@@ -62,9 +62,15 @@ public class PermissionManager
 		
 		{
 			Category c = new Category("Your personal information");
+			c.addPermission(permissionsById.get("TEST"));
+			c.addPermission(permissionsById.get("NOT_RISKY"));
+			categories.add(c);
 		}
 		{
 			Category c = new Category("Services that cost you money");
+			c.addPermission(permissionsById.get("RISKY"));
+			c.addPermission(permissionsById.get("NOT_RISKY"));
+			categories.add(c);
 		}
 		{
 			Category c = new Category("Your location");

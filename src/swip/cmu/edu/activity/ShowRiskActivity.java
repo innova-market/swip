@@ -46,7 +46,7 @@ public class ShowRiskActivity extends Activity
 		setContentView(R.layout.show_risks);
 		
 		beingInstalledIndex = this.getIntent().getIntExtra("appId", 0);
-		beingInstalled = PermissionManager.uninsalledApps.get(beingInstalledIndex);
+		beingInstalled = PermissionManager.uninstalledApps.get(beingInstalledIndex);
 		beingInstalled.revertToDefaults();
 		
 		// Set the app icon and name

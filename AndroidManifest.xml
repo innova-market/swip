@@ -34,17 +34,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:label="Modify Defaults"
-            android:name=".activity.ModifyDefaultsActivity" >
-            <intent-filter >
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:label="Verify permissions for this application"
             android:name=".activity.ModifyPermissionsActivity" >
         </activity>
-        </application>
-
+        <activity
+            android:label="Permission Details"
+            android:name=".activity.PermissionDetailsActivity" >
+        </activity>
+    </application>
 </manifest>

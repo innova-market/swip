@@ -4,14 +4,12 @@
 package swip.cmu.edu.activity;
 
 import swip.cmu.edu.AppListAdapter;
-import swip.cmu.edu.Application;
 import swip.cmu.edu.PermissionManager;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 /**
  * @author Daniel Langdon
@@ -29,13 +27,22 @@ public class AppSelectActivity extends ListActivity
 		PermissionManager.initialize();
 		
 		// Use your own layout and point the adapter to the UI elements which contains the label
-		this.setListAdapter(new AppListAdapter(PermissionManager.uninsalledApps, this));
+		switch(PermissionManager.getMode())
+		{
+		case INSTALLING:
+			this.setListAdapter(new AppListAdapter(PermissionManager.uninstalledApps, this));
+			break;
+		case MODIFYING:
+			this.setListAdapter(new AppListAdapter(PermissionManager.installedApps, this));
+			break;
+		}
 	}
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) 
 	{
 		super.onListItemClick(l, v, position, id);
+		PermissionManager.setSelectedApp(position);
 		
 		// Get the item that was clicked
 //		Application app = (Application) this.getListAdapter().getItem(position);

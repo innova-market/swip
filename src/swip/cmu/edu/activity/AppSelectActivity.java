@@ -13,7 +13,6 @@ import android.widget.ListView;
 
 /**
  * @author Daniel Langdon
- * TODO Need to refresh the screen after installing an app! For now we are just going back to the main menu.
  */
 public class AppSelectActivity extends ListActivity
 {

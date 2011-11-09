@@ -20,7 +20,13 @@ public class ShowRiskActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.show_risks);
-
+	}
+	
+	@Override
+	public void onResume() 
+	{
+		super.onResume();
+		
 		// Check the selected app and revert changes.
 		Application beingInstalled = PermissionManager.getSelectedApp();
 		beingInstalled.revertToDefaults();

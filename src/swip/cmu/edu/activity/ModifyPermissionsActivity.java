@@ -16,10 +16,13 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+/**
+ * 
+ * @author Daniel Langdon
+ * TODO "Cancel" button functionality is not really working for modification of permissions. 
+ */
 public class ModifyPermissionsActivity extends Activity
 {
-	Application beingInstalled = null;
-	int beingInstalledIndex = -1;
 	PermissionRow beingReviewed = null;
 
 	class PermissionRow extends TableRow
@@ -97,7 +100,8 @@ public class ModifyPermissionsActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modify_permissions);
-		beingInstalled = PermissionManager.getSelectedApp();
+		
+		Application beingInstalled = PermissionManager.getSelectedApp();
 
 		// Set the app icon and name
 		ImageView imageView = (ImageView) findViewById(R.id.appImage);
@@ -108,8 +112,7 @@ public class ModifyPermissionsActivity extends Activity
 
 		TableLayout table = (TableLayout) findViewById(R.id.permissionTable);
 
-		// Fill this screen with the information from the permissions, line by
-		// line.
+		// Fill this screen with the information from the permissions, line by line.
 		int i = 0;
 		for (Request r : beingInstalled.getPermissionRequests())
 		{
@@ -132,10 +135,30 @@ public class ModifyPermissionsActivity extends Activity
 			public void onClick(View v)
 			{
 				// TODO Plug Dev's screen
-//				startActivity(new Intent(ShowRiskActivity.this, ModifyPermissionsActivity.class));
+				// startActivity(new Intent(ShowRiskActivity.this,
+				// ModifyPermissionsActivity.class));
+				PermissionManager.installSelected();
 				finish();
 			}
 		});
+		
+		switch (PermissionManager.getMode())
+		{
+			case INSTALLING:
+				modify.setText("Abort Installation");
+				accept.setText("Accept & Install");
+				break;
+			case MODIFYING:
+				modify.setText("Cancel");
+				accept.setText("Save & Exit");
+				break;
+		}
+	}
+
+	@Override
+	public void onResume()
+	{
+		super.onResume();
 	}
 
 	/**

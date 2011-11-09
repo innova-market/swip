@@ -1,7 +1,6 @@
 package swip.cmu.edu.activity;
 
 import swip.cmu.edu.Application.Request;
-import swip.cmu.edu.AppListAdapter;
 import swip.cmu.edu.Permission;
 import swip.cmu.edu.PermissionManager;
 import swip.cmu.edu.R;
@@ -54,17 +53,23 @@ public class PermissionDetailsActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.permission_details);
+	}
 
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+		
 		switch (PermissionManager.getMode())
 		{
 			case INSTALLING:
 			case MODIFYING:
-			{ 
+			{
 				// Get the application and the relevant request.
 				int requestId = this.getIntent().getIntExtra("requestId", 0);
 				req = PermissionManager.getSelectedApp().getPermissionRequests().get(requestId);
 				permission = req.getPermission();
-				
+
 				// Set developer explanation to be visible.
 				((TableRow) findViewById(R.id.featureLoss)).setVisibility(View.VISIBLE);
 				TextView explanation = (TextView) findViewById(R.id.explanation);
@@ -72,14 +77,14 @@ public class PermissionDetailsActivity extends Activity
 					explanation.setText("Nothing.");
 				else
 					explanation.setText(req.getReason());
-				
+
 				break;
 			}
 			case CONFIGURING:
 			{
 				// Get the application and the relevant request.
 				permission = PermissionManager.getSelectedPermission();
-				
+
 				// Set developer explanation to be visible.
 				((TableRow) findViewById(R.id.featureLoss)).setVisibility(View.GONE);
 				break;
@@ -87,7 +92,7 @@ public class PermissionDetailsActivity extends Activity
 		}
 
 		// Set common features like name, description, etc.
-		((TextView) findViewById(R.id.permission)).setText(permission.getName());;
+		((TextView) findViewById(R.id.permission)).setText(permission.getName());
 		((TextView) findViewById(R.id.risk)).setText(permission.getDescription());
 
 		ImageView riskImg = (ImageView) findViewById(R.id.privacyImg);
@@ -101,18 +106,5 @@ public class PermissionDetailsActivity extends Activity
 		modify.setOnClickListener(grantListener);
 		Button accept = (Button) findViewById(R.id.deny);
 		accept.setOnClickListener(denyListener);
-		
-		switch(PermissionManager.getMode())
-		{
-		case INSTALLING:
-			modify.setText("Abort Installation");
-			accept.setText("Accept & Install");
-			break;
-		case MODIFYING:
-			modify.setText("Cancel");
-			accept.setText("Save & Exit");
-			break;
-		}
-		
 	}
 }

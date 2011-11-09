@@ -412,19 +412,19 @@ public class PermissionManager
 		
 		try
 		{
-		Application app = new Application("Doodle Jump", R.drawable.info80, "Yeah, very interesting...");
+		Application app = new Application("Doodle Jump", R.drawable.doodlejump, "Yeah, very interesting...");
 		app.addRequest(new Request(permissionsById.get("INTERNET"), "This permission is used to update high scores and compare them against the Doodle Jump community. It also enables sharing your scores with friends through the network."));	
 		app.addRequest(new Request(permissionsById.get("READ_PHONE_STATE"), "This permission is used to access the phone features of the device and determine the phone number and serial number of this phone, whether a call is active, the number that call is connected to."));	
 		app.addRequest(new Request(permissionsById.get("WAKE_LOCK"), "This permission is used to ensure that your phone does not sleep or does not timeout in the middle of game play."));	
 		uninstalledApps.add(app);
 		
-		app = new Application("Restaurant Cook", R.drawable.info40, "Yeah, very interesting..."); 
+		app = new Application("Restaurant Cook", R.drawable.restaurantcook, "Yeah, very interesting..."); 
 		app.addRequest(new Request(permissionsById.get("INTERNET"), "This permission is used to update high scores and compare them against the Gigbeat community."));	
 		app.addRequest(new Request(permissionsById.get("READ_PHONE_STATE"), "This permission is used to access the phone features of the device and determine the phone number and serial number of this phone, whether a call is active, the number that call is connected to."));	
 		app.addRequest(new Request(permissionsById.get("WAKE_LOCK"), "This permission is used to ensure that your phone does not sleep or does not timeout in the middle of game play."));	
 		uninstalledApps.add(app);
 		
-		app = new Application("Facebook", R.drawable.info40, "Yeah, very interesting...");
+		app = new Application("Facebook", R.drawable.facebook, "Yeah, very interesting...");
 		app.addRequest(new Request(permissionsById.get("MANAGE_ACCOUNTS"), "This permission is used to add and delete user accounts on the phone."));	
 		app.addRequest(new Request(permissionsById.get("SEND_SMS"), "This permission is used if you want to send SMS messages to friends who have their phone already linked to their Facebook account."));	
 		app.addRequest(new Request(permissionsById.get("ACCESS_FINE_LOCATION"), "This permission is used for the Facebok checkin service which allow users to check in to their favorite local spots."));	
@@ -439,17 +439,17 @@ public class PermissionManager
 		app.addRequest(new Request(permissionsById.get("WAKE_LOCK"), "This permission is used to ensure your phone does not go to sleep or your screen does not timeout while browsing Facebook on your mobile device."));	
 		uninstalledApps.add(app);
 		
-		app = new Application("OnTheFly", R.drawable.info40, "Yeah, very interesting...");
+		app = new Application("OnTheFly", R.drawable.onthefly, "Yeah, very interesting...");
 		app.addRequest(new Request(permissionsById.get("ACCESS_COARSE_LOCATION"), "This permission is used to approximate what airport you are currently at."));	
 		app.addRequest(new Request(permissionsById.get("INTERNET"), "This permission is used to access the internet and retrieve the most up to date information on flights and their status."));	
 		uninstalledApps.add(app);
 		
-		app = new Application("X Construction", R.drawable.info40, "Yeah, very interesting...");
+		app = new Application("X Construction", R.drawable.xconstruction, "Yeah, very interesting...");
 		app.addRequest(new Request(permissionsById.get("INTERNET"), "This permission is used to update high scores."));	
 		app.addRequest(new Request(permissionsById.get("WRITE_EXTERNAL_STORAGE"), "This permission is used to save current levels, high scores, and screenshots of your gameplay."));	
 		uninstalledApps.add(app);
 		
-		app = new Application("Gmail", R.drawable.info40, "Yeah, very interesting...");
+		app = new Application("Gmail", R.drawable.gmail, "Yeah, very interesting...");
 		app.addRequest(new Request(permissionsById.get("MANAGE_ACCOUNTS"), "This permission is used to modify and delete accounts on your phone."));	
 		app.addRequest(new Request(permissionsById.get("INTERNET"), "This permission is used to retrieve emails, update the status of your emails, and send emails. It is also used to search, retrieve contacts, and retrieve attachments. This permission is at the core of the application."));	
 		app.addRequest(new Request(permissionsById.get("READ_CONTACTS"), "This permission is used to suggest contacts from your phone in email messages."));	
@@ -462,7 +462,7 @@ public class PermissionManager
 		app.addRequest(new Request(permissionsById.get("ACCESS_NETWORK_STATE"), "This permission is used to notify you how long it's been since the last sync and whether the phone can sync again."));	
 		uninstalledApps.add(app);
 		
-		app = new Application("Pandora internet radio", R.drawable.info40, "Yeah, very interesting...");
+		app = new Application("Pandora internet radio", R.drawable.pandora, "Yeah, very interesting...");
 		app.addRequest(new Request(permissionsById.get("BLUETOOTH"), "This permission is used to stream songs to bluetooth enabled speakers or headphones."));	
 		app.addRequest(new Request(permissionsById.get("INTERNET"), "This permission is used to stream songs from Pandora."));	
 		app.addRequest(new Request(permissionsById.get("READ_CONTACTS"), "This permission is used to see if any of your contacts are on Pandora."));	
@@ -473,18 +473,18 @@ public class PermissionManager
 		app.addRequest(new Request(permissionsById.get("CHANGE_NETWORK_STATE"), "This permission is used to let you know and also enable you to change your connection while streaming."));	
 		uninstalledApps.add(app);
 		
-		app = new Application("Read It Later", R.drawable.info40, "Yeah, very interesting...");
+		app = new Application("Read It Later", R.drawable.readitlater, "Yeah, very interesting...");
 		app.addRequest(new Request(permissionsById.get("INTERNET"), "This permission is used to to sync your saved articles and sites to any device."));	
 		app.addRequest(new Request(permissionsById.get("WRITE_EXTERNAL_STORAGE"), "This permission is used to save your articles locally so you can access them without a network connection."));	
 		app.addRequest(new Request(permissionsById.get("WAKE_LOCK"), "This permission is used to make sure your phone does not go into sleep or your screen does not timeout while on Read It Later."));	
 		uninstalledApps.add(app);
 		
-		app = new Application("Mileage Tracker", R.drawable.info40, "Yeah, very interesting...");
+		app = new Application("Mileage Tracker", R.drawable.mileagetracker, "Yeah, very interesting...");
 		app.addRequest(new Request(permissionsById.get("INTERNET"), "This permission is used to save your mileage history online and make it accessible even from a browser."));	
 		app.addRequest(new Request(permissionsById.get("WRITE_EXTERNAL_STORAGE"), "This permission is used to save your mileage history locally so you can access it without being connected to a network."));	
 		uninstalledApps.add(app);
 		
-		app = new Application("New York Post ", R.drawable.info40, "Yeah, very interesting...");app.addRequest(new Request(permissionsById.get("INTERNET"), "This permission is used to retrieve articles as soon as they are published. This is at the core of the app and is required to view any content."));	
+		app = new Application("New York Post ", R.drawable.newyorkpost, "Yeah, very interesting...");app.addRequest(new Request(permissionsById.get("INTERNET"), "This permission is used to retrieve articles as soon as they are published. This is at the core of the app and is required to view any content."));	
 		app.addRequest(new Request(permissionsById.get("READ_PHONE_STATE"), "This permission is used to access the phone features of the device and determine the phone number and serial number of this phone, whether a call is active, the number that is connected to."));	
 		app.addRequest(new Request(permissionsById.get("WAKE_LOCK"), "This permission is used to make sure your phone does not go into sleep or your screen does not timeout while on the New York Post."));	
 		app.addRequest(new Request(permissionsById.get("VIBRATE"), "This permission is used to notify you using your phone's vibrator when breaking news comes out. Note: You can modify this setting within the app."));	

@@ -1,43 +1,26 @@
 package swip.cmu.edu.activity;
 
-import swip.cmu.edu.Application;
-import swip.cmu.edu.Application.Request;
+import swip.cmu.edu.PermissionManager;
+import swip.cmu.edu.PermissionManager.Mode;
 import swip.cmu.edu.R;
-import swip.cmu.edu.activity.ModifyPermissionsActivity.PermissionRow;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TextView;
 
 public class MainMenuActivity extends Activity
 {
-	View.OnClickListener modifyListener = new View.OnClickListener() 
-	{
-        public void onClick(View v) 
-        {
-        	// Call the next screen.
-        }
-    };
-    
-    View.OnClickListener acceptListener = new View.OnClickListener() 
-	{
-        public void onClick(View v) 
-        {
-        	// Call the next screen.
-        }
-    };
-	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menu);
-		
+	
+		// Initialize the data layer
+		PermissionManager.initialize();
+				
 		// Wait for actions on the buttons.
 		Button install = (Button) findViewById(R.id.install);
 		install.setOnClickListener(new View.OnClickListener()
@@ -45,6 +28,7 @@ public class MainMenuActivity extends Activity
 			@Override
 			public void onClick(View v)
 			{
+				PermissionManager.setMode(Mode.INSTALLING);
 				MainMenuActivity.this.startActivity(new Intent(MainMenuActivity.this, AppSelectActivity.class));
 			}
 		});
@@ -55,6 +39,7 @@ public class MainMenuActivity extends Activity
 			@Override
 			public void onClick(View v)
 			{
+				PermissionManager.setMode(Mode.MODIFYING);
 				MainMenuActivity.this.startActivity(new Intent(MainMenuActivity.this, AppSelectActivity.class));
 			}
 		});
@@ -65,6 +50,7 @@ public class MainMenuActivity extends Activity
 			@Override
 			public void onClick(View v)
 			{
+				PermissionManager.setMode(Mode.CONFIGURING);
 				MainMenuActivity.this.startActivity(new Intent(MainMenuActivity.this, AppSelectActivity.class));
 			}
 		});

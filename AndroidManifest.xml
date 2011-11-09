@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:label="Select application to install"
+            android:label="Select an application"
             android:name=".activity.AppSelectActivity" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />

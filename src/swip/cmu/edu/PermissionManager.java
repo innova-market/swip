@@ -20,13 +20,13 @@ public class PermissionManager
 	private static Permission selectedPermission = null;
 	private static Mode mode = Mode.INSTALLING;  
 	
-	public static boolean install(Application toInstall)
+	public static boolean installSelected()
 	{
-		int index = uninstalledApps.indexOf(toInstall);
+		int index = uninstalledApps.indexOf(selectedApp);
 		if(index < 0)
 			return false;
 		uninstalledApps.remove(index);
-		installedApps.add(toInstall);
+		installedApps.add(selectedApp);
 		return true;
 	}
 	
@@ -173,12 +173,4 @@ public class PermissionManager
 	{
 		PermissionManager.mode = mode;
 	}
-
-
-
-
-
-
-
-
 }

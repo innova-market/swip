@@ -14,70 +14,48 @@ import android.widget.TextView;
 
 public class ShowRiskActivity extends Activity
 {
-	Application beingInstalled;
-	int beingInstalledIndex;
-	
-	View.OnClickListener modifyListener = new View.OnClickListener() 
-	{
-        public void onClick(View v) 
-        {
-        	// Call the next screen.
-        	Intent intent = new Intent(ShowRiskActivity.this, ModifyPermissionsActivity.class);
-    		intent.putExtra("appId", beingInstalledIndex);
-    		startActivity(intent);
-        }
-    };
-    
-    View.OnClickListener acceptListener = new View.OnClickListener() 
-	{
-        public void onClick(View v) 
-        {
-        	// Update the app status and go back to the first screen.
-        	PermissionManager.install(beingInstalled);
-        	finish();
-        }
-    };
-	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.show_risks);
-		
-		beingInstalledIndex = this.getIntent().getIntExtra("appId", 0);
-		beingInstalled = PermissionManager.uninstalledApps.get(beingInstalledIndex);
+
+		// Check the selected app and revert changes.
+		Application beingInstalled = PermissionManager.getSelectedApp();
 		beingInstalled.revertToDefaults();
 		
 		// Set the app icon and name
 		ImageView imageView = (ImageView) findViewById(R.id.appImage);
 		imageView.setImageResource(beingInstalled.getIcon());
-		
 		TextView textView = (TextView) findViewById(R.id.appName);
 		textView.setText(beingInstalled.getName());
 		
 		// Set the warnings
 		TableRow fl = (TableRow) findViewById(R.id.featureLoss);
-		if(!beingInstalled.isLoosingFeatures())
-			fl.setVisibility(View.GONE);
-		else
-			fl.setVisibility(View.VISIBLE);
-
+		fl.setVisibility(beingInstalled.isLoosingFeatures() ? View.VISIBLE : View.GONE);
 		TableRow pr = (TableRow) findViewById(R.id.privacyRisk);
-		if(!beingInstalled.isRiskingPrivacy())
-			pr.setVisibility(View.GONE);
-		else
-			pr.setVisibility(View.VISIBLE);
+		pr.setVisibility(beingInstalled.isRiskingPrivacy() ? View.VISIBLE : View.GONE);
 		
 		// Wait for actions on the buttons.
 		Button modify = (Button) findViewById(R.id.modify);
-		modify.setOnClickListener(modifyListener);
+		modify.setOnClickListener(new View.OnClickListener() 
+		{
+	        public void onClick(View v) 
+	        {
+	    		startActivity(new Intent(ShowRiskActivity.this, ModifyPermissionsActivity.class));
+	    		finish();
+	        }
+	    });
 		Button accept = (Button) findViewById(R.id.accept);
-		accept.setOnClickListener(acceptListener);
-	}
-	
-	public void setApp(Application app)
-	{
-		beingInstalled = app;
+		accept.setOnClickListener(new View.OnClickListener() 
+		{
+	        public void onClick(View v) 
+	        {
+	        	// Update the app status and go back to the first screen.
+	        	PermissionManager.installSelected();
+	        	finish();
+	        }
+	    });
 	}
 }

@@ -1,7 +1,7 @@
 package swip.cmu.edu.activity;
 
-import swip.cmu.edu.Application;
 import swip.cmu.edu.Application.Request;
+import swip.cmu.edu.AppListAdapter;
 import swip.cmu.edu.Permission;
 import swip.cmu.edu.PermissionManager;
 import swip.cmu.edu.R;
@@ -10,85 +10,109 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 public class PermissionDetailsActivity extends Activity
 {
-	Application beingInstalled;
 	Request req;
 	Permission permission;
-	
+
 	/**
 	 * Listens to the grant button, applies the action and closes.
 	 */
-	View.OnClickListener grantListener = new View.OnClickListener() 
+	View.OnClickListener grantListener = new View.OnClickListener()
 	{
-        public void onClick(View v) 
-        {
-        	if(beingInstalled != null)
-        		req.setGranted(true);
-        	else
-        		permission.setAcceptByDefault(true);
-        	finish();
-        }
-    };
+		public void onClick(View v)
+		{
+			if (req != null)
+				req.setGranted(true);
+			else
+				permission.setAcceptByDefault(true);
+			finish();
+		}
+	};
 
 	/**
 	 * Listens to the deny button, applies the action and closes.
 	 */
-    View.OnClickListener denyListener = new View.OnClickListener() 
+	View.OnClickListener denyListener = new View.OnClickListener()
 	{
-        public void onClick(View v) 
-        {
-        	if(beingInstalled != null)
-        		req.setGranted(false);
-        	else
-        		permission.setAcceptByDefault(false);
-        	finish();
-        }
-    };
-	
+		public void onClick(View v)
+		{
+			if (req != null)
+				req.setGranted(false);
+			else
+				permission.setAcceptByDefault(false);
+			finish();
+		}
+	};
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.permission_details);
-		
-		// TODO Generalize for already uninstalled apps.
-		int permissionId = this.getIntent().getIntExtra("requestId", -1);
-		
-		if(permissionId < 0)
+
+		switch (PermissionManager.getMode())
 		{
-			int appId = this.getIntent().getIntExtra("appId", -1);
-			int requestId = this.getIntent().getIntExtra("requestId", -1);
-			beingInstalled = appId < 0 ? null : PermissionManager.uninstalledApps.get(appId);
-			req = requestId < 0 ? null : beingInstalled.getPermissionRequests().get(requestId);
-			permission = req.getPermission();
+			case INSTALLING:
+			case MODIFYING:
+			{ 
+				// Get the application and the relevant request.
+				int requestId = this.getIntent().getIntExtra("requestId", 0);
+				req = PermissionManager.getSelectedApp().getPermissionRequests().get(requestId);
+				permission = req.getPermission();
+				
+				// Set developer explanation to be visible.
+				((TableRow) findViewById(R.id.featureLoss)).setVisibility(View.VISIBLE);
+				TextView explanation = (TextView) findViewById(R.id.explanation);
+				if (req.getReason() == null || req.getReason().length() == 0)
+					explanation.setText("Nothing.");
+				else
+					explanation.setText(req.getReason());
+				
+				break;
+			}
+			case CONFIGURING:
+			{
+				// Get the application and the relevant request.
+				permission = PermissionManager.getSelectedPermission();
+				
+				// Set developer explanation to be visible.
+				((TableRow) findViewById(R.id.featureLoss)).setVisibility(View.GONE);
+				break;
+			}
 		}
-		
-		TextView textView = (TextView) findViewById(R.id.permission);
-		textView.setText(permission.getName());
-	
-		textView = (TextView) findViewById(R.id.explanation);
-		if(req.getReason() == null || req.getReason().length() == 0)
-			textView.setText("Nothing.");
-		else
-			textView.setText(req.getReason());
+
+		// Set common features like name, description, etc.
+		((TextView) findViewById(R.id.permission)).setText(permission.getName());;
+		((TextView) findViewById(R.id.risk)).setText(permission.getDescription());
 
 		ImageView riskImg = (ImageView) findViewById(R.id.privacyImg);
-		if(permission.isRisky())
+		if (permission.isRisky())
 			riskImg.setVisibility(View.VISIBLE);
 		else
 			riskImg.setVisibility(View.INVISIBLE);
-		
-		textView = (TextView) findViewById(R.id.risk);
-		textView.setText(permission.getDescription());
-		
+
 		// Wait for actions on the buttons.
 		Button modify = (Button) findViewById(R.id.grant);
 		modify.setOnClickListener(grantListener);
 		Button accept = (Button) findViewById(R.id.deny);
 		accept.setOnClickListener(denyListener);
+		
+		switch(PermissionManager.getMode())
+		{
+		case INSTALLING:
+			modify.setText("Abort Installation");
+			accept.setText("Accept & Install");
+			break;
+		case MODIFYING:
+			modify.setText("Cancel");
+			accept.setText("Save & Exit");
+			break;
+		}
+		
 	}
 }

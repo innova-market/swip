@@ -13,18 +13,20 @@ import android.widget.ListView;
 
 /**
  * @author Daniel Langdon
- *
+ * TODO Need to refresh the screen after installing an app! For now we are just going back to the main menu.
  */
 public class AppSelectActivity extends ListActivity
 {
 	/** Called when the activity is first created. */
-
 	public void onCreate(Bundle icicle) 
 	{
 		super.onCreate(icicle);
-		
-		// Initialize the data layer
-		PermissionManager.initialize();
+	}
+	
+	@Override
+	public void onResume() 
+	{
+		super.onResume();
 		
 		// Use your own layout and point the adapter to the UI elements which contains the label
 		switch(PermissionManager.getMode())
@@ -43,14 +45,14 @@ public class AppSelectActivity extends ListActivity
 	{
 		super.onListItemClick(l, v, position, id);
 		PermissionManager.setSelectedApp(position);
-		
-		// Get the item that was clicked
-//		Application app = (Application) this.getListAdapter().getItem(position);
-//		Toast.makeText(this, "You selected: " + app.getName(), Toast.LENGTH_LONG).show();
-		
-		Intent intent = new Intent(this, ShowRiskActivity.class);
-		intent.putExtra("appId", position);
-		startActivity(intent);
-		
+		switch(PermissionManager.getMode())
+		{
+		case INSTALLING:
+			startActivity(new Intent(this, ShowRiskActivity.class));
+			break;
+		case MODIFYING:
+			startActivity(new Intent(this, ModifyPermissionsActivity.class));
+			break;
+		}
 	}
 }

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -20,7 +21,7 @@ public class ModifyPermissionsActivity extends Activity
 	Application beingInstalled = null;
 	int beingInstalledIndex = -1;
 	PermissionRow beingReviewed = null;
-	
+
 	class PermissionRow extends TableRow
 	{
 		ImageView risk;
@@ -30,20 +31,21 @@ public class ModifyPermissionsActivity extends Activity
 		CheckBox check;
 		Request request;
 
-		public PermissionRow(final Context context, Request reqest, final int appIndex, final int requestIndex)
+		public PermissionRow(final Context context, Request reqest, final int requestIndex)
 		{
 			super(context);
 			this.request = reqest;
-			
+
 			// Set the images
 			risk = new ImageView(context);
 			loss = new ImageView(context);
 			risk.setImageResource(R.drawable.warn20);
 			loss.setImageResource(R.drawable.info20);
-			
+
 			text = new TextView(context);
 			text.setText(request.getPermission().getName());
-			text.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 20));
+			text.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+					LayoutParams.WRAP_CONTENT, 20));
 			text.setClickable(true);
 			text.setOnClickListener(new OnClickListener()
 			{
@@ -52,17 +54,16 @@ public class ModifyPermissionsActivity extends Activity
 				{
 					beingReviewed = PermissionRow.this;
 					Intent intent = new Intent(context, PermissionDetailsActivity.class);
-					intent.putExtra("appId", appIndex);
 					intent.putExtra("requestId", requestIndex);
 					startActivityForResult(intent, 0);
 				}
 			});
 
-//			grant = new ToggleButton(context);
-//			grant.setTextOn("Yes");
-//			grant.setTextOff("No");
-//			grant.setChecked(true);	// TODO link
-			
+			// grant = new ToggleButton(context);
+			// grant.setTextOn("Yes");
+			// grant.setTextOff("No");
+			// grant.setChecked(true); // TODO link
+
 			check = new CheckBox(context);
 			check.setOnClickListener(new OnClickListener()
 			{
@@ -74,7 +75,7 @@ public class ModifyPermissionsActivity extends Activity
 					update();
 				}
 			});
-			
+
 			this.addView(check);
 			this.addView(text);
 			this.addView(risk);
@@ -96,9 +97,7 @@ public class ModifyPermissionsActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.modify_permissions);
-
-		int index = this.getIntent().getIntExtra("appId", 0);
-		beingInstalled = PermissionManager.uninstalledApps.get(index);
+		beingInstalled = PermissionManager.getSelectedApp();
 
 		// Set the app icon and name
 		ImageView imageView = (ImageView) findViewById(R.id.appImage);
@@ -109,13 +108,34 @@ public class ModifyPermissionsActivity extends Activity
 
 		TableLayout table = (TableLayout) findViewById(R.id.permissionTable);
 
-		// Fill this screen with the information from the permissions, line by line.
+		// Fill this screen with the information from the permissions, line by
+		// line.
 		int i = 0;
 		for (Request r : beingInstalled.getPermissionRequests())
 		{
 			// Add risk if present.
-			table.addView(new PermissionRow(this, r, index, i++));
+			table.addView(new PermissionRow(this, r, i++));
 		}
+
+		// Wait for actions on the buttons.
+		Button modify = (Button) findViewById(R.id.modify);
+		modify.setOnClickListener(new View.OnClickListener()
+		{
+			public void onClick(View v)
+			{
+				finish();
+			}
+		});
+		Button accept = (Button) findViewById(R.id.accept);
+		accept.setOnClickListener(new View.OnClickListener()
+		{
+			public void onClick(View v)
+			{
+				// TODO Plug Dev's screen
+//				startActivity(new Intent(ShowRiskActivity.this, ModifyPermissionsActivity.class));
+				finish();
+			}
+		});
 	}
 
 	/**
@@ -125,10 +145,11 @@ public class ModifyPermissionsActivity extends Activity
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
 		super.onActivityResult(requestCode, resultCode, data);
-		if(beingReviewed != null)
+		if (beingReviewed != null)
 		{
 			beingReviewed.update();
 			beingReviewed = null;
 		}
 	}
+
 }

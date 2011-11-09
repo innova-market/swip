@@ -21,12 +21,15 @@ public class Application
 		boolean granted;
 		String reason;
 		
-		public Request(Permission permission, String reason)
+		public Request(Permission permission, String reason) throws Exception
 		{
 			super();
 			this.permission = permission;
 			this.granted = false;
 			this.reason = reason;
+			
+			if(permission == null)
+				throw(new Exception(reason));
 		}
 
 		/**
@@ -74,10 +77,13 @@ public class Application
 
 	public void revertToDefaults()
 	{
+		int i=0;
 		for(Request r: requests)
 		{
 			r.granted = r.permission.acceptByDefault();
+			i++;
 		}
+		int a = i;
 	}
 	
 	public boolean isRiskingPrivacy()

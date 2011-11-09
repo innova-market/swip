@@ -6,7 +6,6 @@ package swip.cmu.edu;
  */
 public class Permission
 {
-	private String key;
 	private String name;
 	private String description;
 	private boolean acceptByDefault;
@@ -20,13 +19,12 @@ public class Permission
 		return risky;
 	}
 
-	public Permission(String key, String name, String description, boolean risky)
+	public Permission(String name, String description, boolean risky)
 	{
 		super();
 		this.name = name;
 		this.description = description;
 		this.acceptByDefault = !risky;
-		this.key = key;
 		this.risky = risky;
 	}
 

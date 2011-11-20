@@ -43,6 +43,13 @@ public class ShowRiskActivity extends Activity
 		TableRow pr = (TableRow) findViewById(R.id.privacyRisk);
 		pr.setVisibility(beingInstalled.isRiskingPrivacy() ? View.VISIBLE : View.GONE);
 		
+		/* Neither item is visible, so we tell the user*/
+		TableRow ok = (TableRow) findViewById(R.id.NoPRFL);
+		if(!beingInstalled.isLoosingFeatures() && !beingInstalled.isRiskingPrivacy())
+			ok.setVisibility(View.VISIBLE);
+		else	
+			ok.setVisibility(View.GONE);
+		
 		// Wait for actions on the buttons.
 		Button modify = (Button) findViewById(R.id.modify);
 		modify.setOnClickListener(new View.OnClickListener() 
@@ -59,7 +66,8 @@ public class ShowRiskActivity extends Activity
 	        public void onClick(View v) 
 	        {
 	        	// Update the app status and go back to the first screen.
-	        	PermissionManager.installSelected();
+	        	//PermissionManager.installSelected();
+	    		startActivity(new Intent(getBaseContext(), CheckoutActivity.class));
 	        	finish();
 	        }
 	    });

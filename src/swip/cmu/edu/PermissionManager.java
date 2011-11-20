@@ -22,7 +22,7 @@ public class PermissionManager
 	private static Application selectedApp = null;
 	private static Permission selectedPermission = null;
 	private static Mode mode = Mode.INSTALLING;
-
+	
 	public static boolean installSelected()
 	{
 		int index = uninstalledApps.indexOf(selectedApp);
@@ -154,9 +154,9 @@ public class PermissionManager
 				"Allows an application to modify global audio settings", false));
 		permissionsById.put("MODIFY_PHONE_STATE", new Permission("Modify Phone State",
 				"Allows modification of the telephony state - power on mmi etc.", false));
-		permissionsById.put("MOUNT_FORMAT_FILESYSTEMS", new Permission("Mount Format Filesystems",
+		permissionsById.put("MOUNT_FORMAT_FILESYSTEMS", new Permission("Mount Format File Systems",
 				"Allows formatting file systems for removable storage.", false));
-		permissionsById.put("MOUNT_UNMOUNT_FILESYSTEMS", new Permission("Mount Unmount Filesystems",
+		permissionsById.put("MOUNT_UNMOUNT_FILESYSTEMS", new Permission("Mount Unmount File Systems",
 				"Allows mounting and unmounting file systems for removable storage.", false));
 		permissionsById.put("NFC",
 				new Permission("Nfc", "Allows applications to perform I/O operations over NFC", true));
@@ -277,6 +277,7 @@ public class PermissionManager
 			c.addPermission(permissionsById.get("WRITE_GSERVICES"));
 			c.addPermission(permissionsById.get("WRITE_HISTORY_BOOKMARKS"));
 			c.addPermission(permissionsById.get("WRITE_PROFILE"));
+			categories.add(c);
 		}
 		{
 			Category c = new Category("Services that cost you money");
@@ -298,6 +299,7 @@ public class PermissionManager
 			c.addPermission(permissionsById.get("RECEIVE_WAP_PUSH"));
 			c.addPermission(permissionsById.get("SEND_SMS"));
 			c.addPermission(permissionsById.get("WRITE_SMS"));
+			categories.add(c);
 		}
 		{
 			Category c = new Category("Your messages");
@@ -312,6 +314,7 @@ public class PermissionManager
 			c.addPermission(permissionsById.get("CHANGE_NETWORK_STATE"));
 			c.addPermission(permissionsById.get("CHANGE_WIFI_MULTICAST_STATE"));
 			c.addPermission(permissionsById.get("CHANGE_WIFI_STATE"));
+			categories.add(c);
 		}
 		{
 			Category c = new Category("Your accounts");
@@ -322,6 +325,7 @@ public class PermissionManager
 			c.addPermission(permissionsById.get("MOUNT_FORMAT_FILESYSTEMS"));
 			c.addPermission(permissionsById.get("MOUNT_UNMOUNT_FILESYSTEMS"));
 			c.addPermission(permissionsById.get("WRITE_EXTERNAL_STORAGE"));
+			categories.add(c);
 		}
 		{
 			Category c = new Category("Phone calls");
@@ -329,6 +333,7 @@ public class PermissionManager
 			c.addPermission(permissionsById.get("CALL_PHONE"));
 			c.addPermission(permissionsById.get("CALL_PRIVILEGED"));
 			c.addPermission(permissionsById.get("PROCESS_OUTGOING_CALLS"));
+			categories.add(c);
 		}
 		{
 			Category c = new Category("Hardware controls");
@@ -347,6 +352,7 @@ public class PermissionManager
 			c.addPermission(permissionsById.get("SET_ALARM"));
 			c.addPermission(permissionsById.get("VIBRATE"));
 			c.addPermission(permissionsById.get("WAKE_LOCK"));
+			categories.add(c);
 		}
 		{
 			Category c = new Category("System tools");
@@ -367,6 +373,7 @@ public class PermissionManager
 			c.addPermission(permissionsById.get("UPDATE_DEVICE_STATS"));
 			c.addPermission(permissionsById.get("WRITE_SECURE_SETTINGS"));
 			c.addPermission(permissionsById.get("WRITE_SETTINGS"));
+			categories.add(c);
 		}
 		{
 			Category c = new Category("Software Controls");
@@ -385,6 +392,7 @@ public class PermissionManager
 			c.addPermission(permissionsById.get("STATUS_BAR"));
 			c.addPermission(permissionsById.get("SUBSCRIBED_FEEDS_READ"));
 			c.addPermission(permissionsById.get("WRITE_SYNC_SETTINGS"));
+			categories.add(c);
 		}
 	}
 
@@ -471,7 +479,7 @@ public class PermissionManager
 		app.addRequest(new Request(permissionsById.get("WAKE_LOCK"), "This permission is used to make sure your phone does not go into sleep or your screen does not timeout while on Pandora."));	
 		app.addRequest(new Request(permissionsById.get("CHANGE_WIFI_STATE"), "This permission is used to make sure your connected to the best network while songs."));	
 		app.addRequest(new Request(permissionsById.get("CHANGE_NETWORK_STATE"), "This permission is used to let you know and also enable you to change your connection while streaming."));	
-		uninstalledApps.add(app);
+		installedApps.add(app);
 		
 		app = new Application("Read It Later", R.drawable.readitlater, "Yeah, very interesting...");
 		app.addRequest(new Request(permissionsById.get("INTERNET"), "This permission is used to to sync your saved articles and sites to any device."));	

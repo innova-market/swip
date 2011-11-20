@@ -137,7 +137,15 @@ public class ModifyPermissionsActivity extends Activity
 				// TODO Plug Dev's screen
 				// startActivity(new Intent(ShowRiskActivity.this,
 				// ModifyPermissionsActivity.class));
-				PermissionManager.installSelected();
+				//PermissionManager.installSelected();
+	    		switch(PermissionManager.getMode()){
+	    			case INSTALLING:
+		    			startActivity(new Intent(getBaseContext(), CheckoutActivity.class));
+		    			break;
+	    			case MODIFYING:
+		    			startActivity(new Intent(getBaseContext(), MainMenuActivity.class));
+		    			break;
+	    		}
 				finish();
 			}
 		});
@@ -145,12 +153,12 @@ public class ModifyPermissionsActivity extends Activity
 		switch (PermissionManager.getMode())
 		{
 			case INSTALLING:
-				modify.setText("Abort Installation");
-				accept.setText("Accept & Install");
+				modify.setText("Cancel Installation");
+				accept.setText("Accept and Review");
 				break;
 			case MODIFYING:
 				modify.setText("Cancel");
-				accept.setText("Save & Exit");
+				accept.setText("Save and Exit");
 				break;
 		}
 	}

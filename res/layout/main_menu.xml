@@ -9,18 +9,19 @@
         android:id="@+id/install"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Install an application" />
-
+        android:text="Install An Application"
+        android:layout_marginTop="40px" />
     <Button
         android:id="@+id/modify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Modify Existing Permissions" />
-
+        android:text="Modify Existing Permissions"
+		android:layout_marginTop="20px" />
     <Button
         android:id="@+id/defaults"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Manage Permission Defaults" />
+        android:text="Manage Permission Defaults"
+        android:layout_marginTop="20px" />
 
 </LinearLayout>

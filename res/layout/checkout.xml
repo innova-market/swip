@@ -63,14 +63,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Abort Installation" />
+            android:text="Modify" />
 
         <Button
             android:id="@+id/accept"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Accept and Review" />
+            android:text="Accept and install" />
     </TableRow>
 
 </TableLayout>

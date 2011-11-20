@@ -51,7 +51,7 @@ public class MainMenuActivity extends Activity
 			public void onClick(View v)
 			{
 				PermissionManager.setMode(Mode.CONFIGURING);
-				MainMenuActivity.this.startActivity(new Intent(MainMenuActivity.this, AppSelectActivity.class));
+				MainMenuActivity.this.startActivity(new Intent(MainMenuActivity.this, ModifyDefaultsActivity.class));
 			}
 		});
 	}
